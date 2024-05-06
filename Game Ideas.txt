@@ -1,0 +1,8 @@
+Jeu de platforme fait par un tuto 
+Ajouter des fonctionnalités :
+	- Power-Ups
+	- Différents Players with abilities
+	- Map maker
+	- Multiplayer
+	- LeaderBoard
+	- More Levels
