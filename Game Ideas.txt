@@ -1,8 +1,11 @@
 Jeu de platforme fait par un tuto 
 Ajouter des fonctionnalités :
-	- Power-Ups
-	- Différents Players with abilities
+	- Power-Ups (Double Jumps, Dash) 
+	- Différents Players (Warriors, Archer, Mage)
 	- Map maker
 	- Multiplayer
 	- LeaderBoard
 	- More Levels
+	- Slime (Possibility to kill them, Do spawn randomly, More différents...)
+	- Menu (Start, Levels Choice, Options...)
+	- Life Bar
