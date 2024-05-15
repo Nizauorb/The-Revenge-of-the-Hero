@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cjiola1f7y75h"]
+[gd_scene load_steps=20 format=3 uid="uid://cjiola1f7y75h"]
 
 [ext_resource type="PackedScene" uid="uid://b5l07wm03rvf4" path="res://scenes/player.tscn" id="1_qme04"]
 [ext_resource type="Script" path="res://scripts/gamemanager.gd" id="1_wcrxb"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b5lxf5m1kdgxj" path="res://scenes/killzone.tscn" id="5_ff2of"]
 [ext_resource type="PackedScene" uid="uid://dol6yms2qmt08" path="res://scenes/slime.tscn" id="6_5au4q"]
 [ext_resource type="FontFile" uid="uid://cnlosn7oxhf5e" path="res://assets/fonts/PixelOperator8.ttf" id="7_eo5rr"]
+[ext_resource type="PackedScene" uid="uid://bka0woxqdkfwi" path="res://scenes/power_up.tscn" id="10_mayv5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7fnog"]
 texture = ExtResource("2_03x3t")
@@ -414,6 +415,21 @@ texture = ExtResource("2_03x3t")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_7fnog")
 
+[sub_resource type="Animation" id="Animation_jbpmo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(433, 49)]
+}
+
 [sub_resource type="Animation" id="Animation_sqbkc"]
 resource_name = "move"
 length = 2.0
@@ -431,7 +447,13 @@ tracks/0/keys = {
 "values": [Vector2(433, 49), Vector2(592, 49)]
 }
 
-[sub_resource type="Animation" id="Animation_jbpmo"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gb8ru"]
+_data = {
+"RESET": SubResource("Animation_jbpmo"),
+"move": SubResource("Animation_sqbkc")
+}
+
+[sub_resource type="Animation" id="Animation_3156b"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -443,13 +465,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(433, 49)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_gb8ru"]
-_data = {
-"RESET": SubResource("Animation_jbpmo"),
-"move": SubResource("Animation_sqbkc")
+"values": [Vector2(817, -112)]
 }
 
 [sub_resource type="Animation" id="Animation_ijt2q"]
@@ -467,21 +483,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(817, -112), Vector2(816, 16)]
-}
-
-[sub_resource type="Animation" id="Animation_3156b"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(817, -112)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b4xw2"]
@@ -671,3 +672,8 @@ theme_override_colors/font_color = Color(0.0784314, 0.596078, 0.862745, 1)
 theme_override_fonts/font = ExtResource("7_eo5rr")
 theme_override_font_sizes/font_size = 8
 text = "You finished the Tutorial !"
+
+[node name="PowerUp" parent="." instance=ExtResource("10_mayv5")]
+position = Vector2(162, 27)
+
+[connection signal="powerup_hit" from="PowerUp" to="Player" method="_on_power_up_powerup_hit"]
